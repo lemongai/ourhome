@@ -25,7 +25,8 @@ class NoticesController < ApplicationController
   end
 
   def edit
-    @pagy, @notices = pagy(Notice.all.order(id: :desc))
+    @notices = Notice.where(id: params[:id])
+#    @pagy, @notices = pagy(Notice.all.order(id: :desc))
     @notice = Notice.find(params[:id])
   end
 
@@ -34,7 +35,8 @@ class NoticesController < ApplicationController
 
     if @notice.update(notice_params)
       flash[:success] = 'お知らせは正常に更新されました'
-      redirect_to notices_path
+      redirect_back(fallback_location: root_path)
+#      redirect_to notices_path
     else
       @pagy, @notices = pagy(current_user.notices.order(id: :desc))
       flash.now[:danger] = 'お知らせは更新されませんでした'

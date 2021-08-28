@@ -11,7 +11,9 @@
           </div>
           <div>
             <% if current_user.admin == true %>
-              <%= link_to '編集する', edit_notice_path(notice) %>
+              <% if action_name != "edit" %>
+                <%= link_to '編集する', edit_notice_path(notice) %>
+              <% end %>
               <%= link_to "削除する", notice, method: :delete, data: { confirm: "本当に削除しますか？" } %>
             <% end %>
           </div>
@@ -19,5 +21,4 @@
       </li>
     <% end %>
   </ul>
-  <%== pagy_bootstrap_nav(@pagy) %>
 <% end %>
