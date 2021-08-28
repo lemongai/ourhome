@@ -1,0 +1,16 @@
+<% if notices.any? %>
+  <ul class="list-unstyled mt-2">
+    <% notices.each do |notice| %>
+      <li class="d-flex">
+        <div>
+          <div>
+            <span class="text-muted"> <%= notice.created_at.to_s(:datetime_jp) %></span>
+          </div>
+          <div>
+            <p><%= notice.content %></p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,26 @@
+<% if posts.any? %>
+  <ul class="list-unstyled mt-2">
+    <% posts.each do |post| %>
+      <li class="d-flex">
+        <img class="rounded me-2 mb-5" src="<%= gravatar_url(post.user, { size: 64 }) %>" alt="">
+        <div>
+          <div>
+            <%= post.user.room %><span class="text-muted"> <%= post.created_at.to_s(:datetime_jp) %></span>
+          </div>
+          <div>
+            <p><%= post.content %></p>
+          </div>
+          <div>
+            <div class="btn-group" role="group" aria-label="button-group">
+              <%= render 'favorites/like_button', post: post %>
+              <% if current_user == post.user or current_user.admin == true %>
+                <%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <%== pagy_bootstrap_nav(@pagy) %>
+<% end %>

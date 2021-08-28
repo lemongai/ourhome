@@ -1,0 +1,13 @@
+  <div class="card">
+    <div class="card-header">
+        ユーザメニュー
+    </div>
+  <div class="card-body">
+    <div>
+      <img class="rounded me-2 mb-1" src="<%= gravatar_url(current_user, { size: 32 }) %>" alt="">
+      <%= current_user.room %><% if current_user.admin == true %>（管理室）<% end %>
+    </div>
+    <div class="mb-3"><%= link_to "マイホーム", homes_path, class: 'btn btn-outline-primary btn-sm w-100' %></div>
+    <div class="mb-3"><%= link_to "管理室からのお知らせ", notices_path, class: 'btn btn-outline-primary btn-sm w-100' %></div>
+    <div class="mb-3"><%= link_to "投稿一覧", posts_path, class: 'btn btn-outline-primary btn-sm w-100' %></div>
+  </div>

@@ -1,0 +1,29 @@
+<div class="row">
+  <aside class="col-sm-4">
+    <%= render 'layouts/menu' %>
+  </aside>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        お知らせ一覧
+      </div>
+      <div class="card-body">
+        <%= render 'notices/notices', notices: @notices %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <% if current_user.admin == true %>
+    <div class="card">
+      <div class="card-header">
+        管理者メニュー
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <%= link_to "新たなお知らせの追加", new_notice_path, class: 'btn btn-outline-danger btn-sm w-100' %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

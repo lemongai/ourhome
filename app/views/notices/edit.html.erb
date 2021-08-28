@@ -1,0 +1,31 @@
+<div class="row">
+  <aside class="col-sm-4">
+    <%= render 'layouts/menu' %>
+  </aside>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        お知らせ一覧
+      </div>
+      <div class="card-body">
+        <%= render 'notices/notices', notices: @notices %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <%= form_with(model: @notice) do |f| %>
+      <div>
+        <img class="rounded me-2 mb-1" src="<%= gravatar_url(current_user, { size: 32 }) %>" alt="">
+        <%= current_user.room %>　お知らせの編集
+      </div>
+      <div class="mb-1">
+        <%= f.text_area :content, class: 'form-control', rows: 9 %>
+      </div>
+      <div class="mb-3">
+        <%= f.submit '反映する', class: 'btn btn-primary btn-sm mb-1' %>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>

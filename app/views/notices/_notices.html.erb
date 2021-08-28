@@ -1,0 +1,23 @@
+<% if notices.any? %>
+  <ul class="list-unstyled mt-2">
+    <% notices.each do |notice| %>
+      <li class="d-flex">
+        <div>
+          <div>
+            <span class="text-muted"> <%= notice.created_at.to_s(:datetime_jp) %></span>
+          </div>
+          <div>
+            <p><%= notice.content %></p>
+          </div>
+          <div>
+            <% if current_user.admin == true %>
+              <%= link_to '編集する', edit_notice_path(notice) %>
+              <%= link_to "削除する", notice, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <%== pagy_bootstrap_nav(@pagy) %>
+<% end %>
