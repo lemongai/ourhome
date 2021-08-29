@@ -50,6 +50,9 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: ourhome_production
   username: ourhome
   password: <%= ENV['OURHOME_DATABASE_PASSWORD'] %>
